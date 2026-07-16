@@ -30,6 +30,7 @@ export default function ChapterPage({ chapterId: defaultId }) {
             <motion.img
               src={data.illustration}
               alt={data.illustrationAlt || ''}
+              loading="lazy"
               className="w-full h-auto rounded-2xl"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}

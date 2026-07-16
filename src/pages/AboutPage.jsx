@@ -85,6 +85,7 @@ export default function AboutPage() {
             <img
               src="/images/hero-collage.png"
               alt="Colagem com pensadores da sociologia"
+              loading="lazy"
               className="w-full h-auto rounded-2xl"
             />
           </motion.div>
@@ -164,6 +165,7 @@ export default function AboutPage() {
                   variants={fadeUp}
                   src="/images/cap1-anthropology.png"
                   alt="Colagem antropologia"
+                  loading="lazy"
                   className="w-full md:w-64 h-auto rounded-xl"
                 />
               </div>
@@ -197,6 +199,7 @@ export default function AboutPage() {
                 variants={fadeUp}
                 src="/images/cap2-culture.png"
                 alt="Colagem conceito de cultura"
+                loading="lazy"
                 className="w-full md:w-64 h-auto rounded-xl"
               />
             </div>
@@ -229,7 +232,8 @@ export default function AboutPage() {
                 variants={fadeUp}
                 src="/images/cap3-identity.png"
                 alt="Colagem estrutura e identidade"
-                className="w-full md:w-56 h-auto rounded-xl"
+                loading="lazy"
+                className="w-full md:w-64 h-auto rounded-xl"
               />
             </div>
           </motion.div>
