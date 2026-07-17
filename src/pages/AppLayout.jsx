@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Menu } from 'lucide-react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import PageTransition from '../components/PageTransition';
@@ -24,6 +25,18 @@ export default function AppLayout() {
           </AnimatePresence>
         </main>
       </div>
+
+      {/* FAB flutuante de menu — visível apenas no mobile */}
+      <motion.button
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.5, type: 'spring', stiffness: 260, damping: 20 }}
+        onClick={() => setSidebarOpen(true)}
+        className="md:hidden fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-accent-orange text-white shadow-lg shadow-accent-orange/30 flex items-center justify-center active:scale-95 transition-transform"
+        aria-label="Abrir menu de navegação"
+      >
+        <Menu className="w-6 h-6" />
+      </motion.button>
     </div>
   );
 }

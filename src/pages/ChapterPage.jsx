@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { motion, useScroll } from 'framer-motion';
 import { chaptersData } from '../data/chapters';
@@ -12,6 +13,12 @@ export default function ChapterPage({ chapterId: defaultId }) {
 
   const { scrollYProgress } = useScroll();
   const data = chaptersData[id];
+
+  // Resetar scroll ao mudar de capítulo
+  useEffect(() => {
+    const main = document.querySelector('main');
+    if (main) main.scrollTop = 0;
+  }, [id]);
 
   if (!data) return <Navigate to="/" />;
 

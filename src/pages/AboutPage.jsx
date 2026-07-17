@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowDown, ArrowRight, BookOpen, Users, ClipboardCheck, Play, Camera, Video, Mail } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowDown, ArrowRight, BookOpen, Users, ClipboardCheck, Play, Camera, Video, Mail, Menu, X } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -15,6 +16,8 @@ const stagger = {
 };
 
 export default function AboutPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-primary-light dark:bg-primary-dark text-text-light dark:text-text-dark font-sans transition-colors duration-500">
 
@@ -24,14 +27,46 @@ export default function AboutPage() {
           <Link to="/sobre" className="font-heading text-lg tracking-tight">
             <span className="opacity-40">S</span>ociol<span className="text-accent-orange">o</span>gia
           </Link>
-          <div className="flex items-center gap-6 text-sm font-medium">
+
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-6 text-sm font-medium">
             <Link to="/sobre" className="text-accent-orange">Sobre</Link>
             <a href="#" className="opacity-60 hover:opacity-100 transition-opacity">Ajuda</a>
             <a href="#" className="opacity-60 hover:opacity-100 transition-opacity">Contato</a>
             <Link to="/" className="opacity-60 hover:opacity-100 transition-opacity">Plataforma</Link>
           </div>
+
+          {/* Mobile hamburger button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            aria-label="Menu de navegação"
+          >
+            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
+
+        {/* Mobile dropdown */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.25, ease: 'easeInOut' }}
+              className="md:hidden overflow-hidden border-t border-border-light dark:border-border-dark"
+            >
+              <div className="flex flex-col gap-1 px-6 py-3 text-sm font-medium">
+                <Link to="/sobre" onClick={() => setMenuOpen(false)} className="py-2 text-accent-orange">Sobre</Link>
+                <a href="#" onClick={() => setMenuOpen(false)} className="py-2 opacity-60 hover:opacity-100 transition-opacity">Ajuda</a>
+                <a href="#" onClick={() => setMenuOpen(false)} className="py-2 opacity-60 hover:opacity-100 transition-opacity">Contato</a>
+                <Link to="/" onClick={() => setMenuOpen(false)} className="py-2 opacity-60 hover:opacity-100 transition-opacity">Plataforma</Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
+
 
       {/* ═══════════ HERO SECTION ═══════════ */}
       <section className="relative max-w-6xl mx-auto px-6 pt-16 pb-24 md:pt-24 md:pb-32">

@@ -97,3 +97,34 @@
 .animate-pulse-soft { animation: pulse-soft 4s ease-in-out infinite; }
 .animate-line-grow { animation: line-grow 0.8s ease-out forwards; transform-origin: left; }
 .animate-dot-pulse { animation: dot-pulse 3s ease-in-out infinite; }
+
+/* ReactFlow — dark mode contrast fix */
+.dark .react-flow__node-default,
+.dark .react-flow__node-input,
+.dark .react-flow__node-output {
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #f97316;
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.15);
+}
+
+.dark .react-flow__node-default .react-flow__handle,
+.dark .react-flow__node-input .react-flow__handle,
+.dark .react-flow__node-output .react-flow__handle {
+  background: #f97316;
+}
+
+.dark .react-flow__edge-path {
+  stroke: #f97316;
+  stroke-opacity: 0.6;
+}
+
+.dark .react-flow__controls button {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .react-flow__controls button:hover {
+  background: #334155;
+}
