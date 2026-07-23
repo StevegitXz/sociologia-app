@@ -1,17 +1,26 @@
 import { useTheme } from '../hooks/useTheme';
-import { Moon, Sun, Menu, Info } from 'lucide-react';
+import { Moon, Sun, Menu, Info, Type, Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import GlossaryDrawer from './GlossaryDrawer';
 
 /**
  * Platform header with:
  * - Hamburger menu on mobile
  * - Brand name
- * - Link to "Sobre" page
+ * - Glossary drawer
+ * - Font size toggle
+ * - Focus Mode toggle
  * - Animated theme toggle
- * - Bottom orange accent line
  */
-export default function Header({ onMenuClick }) {
+export default function Header({ 
+  onMenuClick, 
+  discoveredTerms = [], 
+  fontSize = 'normal', 
+  onToggleFontSize,
+  isFocusMode = false,
+  onToggleFocusMode
+}) {
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -39,22 +48,42 @@ export default function Header({ onMenuClick }) {
             </span>
           </div>
 
-          {/* Right side: nav links + theme toggle */}
-          <div className="flex items-center gap-4 md:gap-6">
+          {/* Right side: nav links + tools + theme toggle */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            {/* Glossary Drawer */}
+            <GlossaryDrawer discoveredTerms={discoveredTerms} />
+
+            {/* Font Size Toggle */}
+            {onToggleFontSize && (
+              <button
+                onClick={onToggleFontSize}
+                className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors opacity-70 hover:opacity-100 flex items-center gap-1 text-xs font-mono"
+                title={`Tamanho da fonte: ${fontSize}`}
+              >
+                <Type className="w-4 h-4 text-accent-orange" />
+                <span className="hidden md:inline uppercase text-[0.65rem] font-bold">{fontSize}</span>
+              </button>
+            )}
+
+            {/* Focus Mode Toggle */}
+            {onToggleFocusMode && (
+              <button
+                onClick={onToggleFocusMode}
+                className={`p-2 rounded-full transition-colors flex items-center gap-1 text-xs ${isFocusMode ? 'bg-accent-orange text-white' : 'hover:bg-black/5 dark:hover:bg-white/10 opacity-70 hover:opacity-100'}`}
+                title={isFocusMode ? "Sair do Modo Foco" : "Ativar Modo Foco (Leitura limpa)"}
+              >
+                {isFocusMode ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                <span className="hidden lg:inline text-[0.65rem] font-bold">{isFocusMode ? 'Modo Normal' : 'Modo Foco'}</span>
+              </button>
+            )}
+
             <Link
               to="/sobre"
-              className="hidden sm:flex items-center gap-1.5 text-sm font-medium opacity-60 hover:opacity-100 transition-opacity"
+              className="hidden sm:flex items-center gap-1.5 text-sm font-medium opacity-60 hover:opacity-100 transition-opacity ml-1"
             >
               <Info className="w-3.5 h-3.5" />
               Sobre
             </Link>
-
-            <span
-              className="hidden md:block text-[0.7rem] font-heading uppercase tracking-[0.25em] opacity-20 select-none"
-              style={{ fontVariant: 'all-small-caps' }}
-            >
-              Do Seu Jeito
-            </span>
 
             {/* Theme toggle */}
             <button

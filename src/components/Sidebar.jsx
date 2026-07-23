@@ -1,5 +1,5 @@
 import { NavLink, Link } from 'react-router-dom';
-import { BookOpen, X, Info } from 'lucide-react';
+import { BookOpen, X, Info, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const chapters = [
@@ -9,7 +9,7 @@ const chapters = [
   { id: 'cap3', title: 'Da estrutura à identidade', num: '3' },
 ];
 
-export default function Sidebar({ isOpen, onClose }) {
+export default function Sidebar({ isOpen, onClose, completedChapters = [], completedSections = [] }) {
   return (
     <>
       {/* Mobile overlay with animation */}
@@ -61,51 +61,60 @@ export default function Sidebar({ isOpen, onClose }) {
 
         {/* Navigation */}
         <nav className="p-3 flex flex-col gap-1 mt-2">
-          {chapters.map((chap) => (
-            <NavLink
-              key={chap.id}
-              to={chap.id === 'intro' ? '/' : `/capitulo/${chap.id}`}
-              end={chap.id === 'intro'}
-              onClick={onClose}
-              className="group relative block"
-            >
-              {({ isActive }) => (
-                <div
-                  className={`
-                    relative flex items-center gap-3 px-4 py-3 rounded-xl
-                    transition-all duration-200 font-medium text-[0.9rem]
-                    ${isActive
-                      ? 'text-accent-orange bg-accent-orange/[0.06]'
-                      : 'opacity-65 hover:opacity-100 hover:bg-black/[0.03] dark:hover:bg-white/[0.03] group-hover:translate-x-0.5'}
-                  `}
-                  style={{ transition: 'all 0.2s ease, transform 0.2s ease' }}
-                >
-                  {/* Active indicator bar */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="sidebar-indicator"
-                      className="absolute left-0 top-2 bottom-2 w-[3px] bg-accent-orange rounded-full"
-                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                    />
-                  )}
+          {chapters.map((chap) => {
+            const isCompleted = completedChapters.includes(chap.id);
+            const hasProgress = completedSections.some(s => s.startsWith(chap.id));
 
-                  {/* Chapter number badge */}
-                  <span
+            return (
+              <NavLink
+                key={chap.id}
+                to={chap.id === 'intro' ? '/' : `/capitulo/${chap.id}`}
+                end={chap.id === 'intro'}
+                onClick={onClose}
+                className="group relative block"
+              >
+                {({ isActive }) => (
+                  <div
                     className={`
-                      w-6 h-6 rounded-md text-[0.7rem] font-semibold flex items-center justify-center flex-shrink-0
+                      relative flex items-center gap-3 px-4 py-3 rounded-xl
+                      transition-all duration-200 font-medium text-[0.9rem]
                       ${isActive
-                        ? 'bg-accent-orange text-white'
-                        : 'bg-accent-orange/10 text-accent-orange'}
+                        ? 'text-accent-orange bg-accent-orange/[0.06]'
+                        : 'opacity-65 hover:opacity-100 hover:bg-black/[0.03] dark:hover:bg-white/[0.03] group-hover:translate-x-0.5'}
                     `}
+                    style={{ transition: 'all 0.2s ease, transform 0.2s ease' }}
                   >
-                    {chap.num}
-                  </span>
+                    {/* Active indicator bar */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="sidebar-indicator"
+                        className="absolute left-0 top-2 bottom-2 w-[3px] bg-accent-orange rounded-full"
+                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                      />
+                    )}
 
-                  <span className="truncate">{chap.title}</span>
-                </div>
-              )}
-            </NavLink>
-          ))}
+                    {/* Chapter number badge / check */}
+                    <span
+                      className={`
+                        w-6 h-6 rounded-md text-[0.7rem] font-semibold flex items-center justify-center flex-shrink-0 transition-colors
+                        ${isCompleted
+                          ? 'bg-emerald-500 text-white'
+                          : isActive
+                            ? 'bg-accent-orange text-white'
+                            : hasProgress
+                              ? 'bg-accent-orange/20 text-accent-orange'
+                              : 'bg-accent-orange/10 text-accent-orange'}
+                      `}
+                    >
+                      {isCompleted ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : chap.num}
+                    </span>
+
+                    <span className="truncate flex-1">{chap.title}</span>
+                  </div>
+                )}
+              </NavLink>
+            );
+          })}
         </nav>
 
         {/* Sobre link (mobile) */}

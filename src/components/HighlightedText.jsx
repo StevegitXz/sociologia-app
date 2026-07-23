@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
  * Renders text content with key terms automatically highlighted in orange.
  * Hover on a term to see its definition in a tooltip.
  */
-export default function HighlightedText({ text, keyTerms = [] }) {
+export default function HighlightedText({ text, keyTerms = [], onDiscoverTerm }) {
   if (!keyTerms.length) {
-    return <p className="text-base sm:text-lg leading-[1.85] opacity-85">{text}</p>;
+    return <>{text}</>;
   }
 
   // Build a regex that matches any key term (case-insensitive, whole words)
@@ -20,29 +20,44 @@ export default function HighlightedText({ text, keyTerms = [] }) {
   const parts = text.split(regex);
 
   return (
-    <p className="text-base sm:text-lg leading-[1.85] opacity-85">
+    <>
       {parts.map((part, i) => {
         const match = keyTerms.find(
           (kt) => kt.term.toLowerCase() === part.toLowerCase()
         );
         if (match) {
-          return <TermHighlight key={i} term={part} definition={match.definition} />;
+          return (
+            <TermHighlight 
+              key={i} 
+              term={part} 
+              definition={match.definition} 
+              onDiscover={() => onDiscoverTerm && onDiscoverTerm(match)} 
+            />
+          );
         }
         return <span key={i}>{part}</span>;
       })}
-    </p>
+    </>
   );
 }
 
-function TermHighlight({ term, definition }) {
+function TermHighlight({ term, definition, onDiscover }) {
   const [showTooltip, setShowTooltip] = useState(false);
+
+  const handleMouseEnter = () => {
+    setShowTooltip(true);
+    if (onDiscover) onDiscover();
+  };
 
   return (
     <span
       className="relative inline-block cursor-help"
-      onMouseEnter={() => setShowTooltip(true)}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={() => setShowTooltip(false)}
-      onTouchStart={() => setShowTooltip(!showTooltip)}
+      onTouchStart={() => {
+        setShowTooltip(!showTooltip);
+        if (onDiscover) onDiscover();
+      }}
     >
       <span className="text-accent-orange font-semibold border-b border-dashed border-accent-orange/40 hover:border-accent-orange transition-colors">
         {term}

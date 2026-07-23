@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, XCircle } from 'lucide-react';
+import { CheckCircle2, XCircle, Lightbulb } from 'lucide-react';
 
-export default function Quiz({ questions }) {
+export default function Quiz({ questions, onCompleteScore }) {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selected, setSelected] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [completed, setCompleted] = useState(false);
+  const [correctCount, setCorrectCount] = useState(0);
 
   if (!questions || questions.length === 0) return null;
 
@@ -18,11 +19,17 @@ export default function Quiz({ questions }) {
     if (isAnswered) return;
     setSelected(idx);
     setIsAnswered(true);
+    if (idx === currentQ.correct) {
+      setCorrectCount((prev) => prev + 1);
+    }
   };
 
   const nextQuestion = () => {
     if (isLast) {
       setCompleted(true);
+      if (onCompleteScore) {
+        onCompleteScore(correctCount, questions.length);
+      }
       return;
     }
     setSelected(null);
@@ -48,9 +55,14 @@ export default function Quiz({ questions }) {
           <p className="text-white text-2xl sm:text-3xl font-heading font-bold mb-2">
             🎉 Parabéns!
           </p>
-          <p className="text-white/80 text-base sm:text-lg">
+          <p className="text-white/80 text-base sm:text-lg mb-4">
             Você concluiu todas as questões deste capítulo.
           </p>
+          <div className="inline-block bg-white/20 rounded-full px-5 py-2">
+            <p className="text-white font-semibold text-lg">
+              Você acertou {correctCount} de {questions.length} questões
+            </p>
+          </div>
         </motion.div>
       </motion.div>
     );
@@ -127,6 +139,31 @@ export default function Quiz({ questions }) {
           );
         })}
       </div>
+
+      {/* ── Explanation ── */}
+      <AnimatePresence>
+        {isAnswered && currentQ.explanation && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, height: 0 }}
+            animate={{ opacity: 1, y: 0, height: 'auto' }}
+            exit={{ opacity: 0, y: 10, height: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mt-6 overflow-hidden"
+          >
+            <div className="bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-900/50 rounded-xl p-5 flex gap-4">
+              <Lightbulb className="w-6 h-6 text-accent-orange flex-shrink-0 mt-0.5" />
+              <div>
+                <h4 className="font-heading font-semibold text-accent-orange mb-1">
+                  Explicação
+                </h4>
+                <p className="text-sm text-primary-dark/80 dark:text-white/80 leading-relaxed">
+                  {currentQ.explanation}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── Next button ── */}
       <AnimatePresence>
