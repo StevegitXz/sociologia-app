@@ -5,14 +5,15 @@ import ExpandableNote from './ExpandableNote';
 import FactCallout from './FactCallout';
 import ScrollReveal from './ScrollReveal';
 import AudioPlayer from './AudioPlayer';
+import MemoryAnchor from './MemoryAnchor';
 
 /**
  * Editorial Content Section
  * - 12-column grid layout on desktop
  * - Alternates text/sidebar positions based on index (Asymmetry)
- * - Sidebar contains PullQuotes and Facts in a sticky container
+ * - Sidebar contains Section Illustrations, Memory Anchors, PullQuotes, Facts
  */
-export default function ContentBlock({ section, index, onDiscoverTerm }) {
+export default function ContentBlock({ section, index, onDiscoverTerm, colorTheme = 'orange' }) {
   const sectionNum = String(index + 1).padStart(2, '0');
   const paragraphs = section.content ? section.content.split('\n\n').filter(p => p.trim() !== '') : [];
   
@@ -73,8 +74,29 @@ export default function ContentBlock({ section, index, onDiscoverTerm }) {
       </div>
 
       {/* ── Marginalia Column (5 cols) - Sticky elements ── */}
-      <div className={`lg:col-span-5 flex flex-col gap-12 sticky top-28 pt-4 lg:pt-16 ${isAlt ? 'lg:col-start-1 lg:row-start-1 lg:order-1' : 'lg:col-start-8 lg:order-2'}`}>
+      <div className={`lg:col-span-5 flex flex-col gap-8 sticky top-28 pt-4 lg:pt-16 ${isAlt ? 'lg:col-start-1 lg:row-start-1 lg:order-1' : 'lg:col-start-8 lg:order-2'}`}>
         
+        {/* Section Didactic Illustration */}
+        {section.sectionIllustration && (
+          <ScrollReveal direction={isAlt ? "right" : "left"} delay={0.1}>
+            <div className="w-full rounded-2xl overflow-hidden shadow-lg border border-black/5 dark:border-white/10 group">
+              <img
+                src={section.sectionIllustration}
+                alt={`Ilustração didática da seção ${section.heading}`}
+                className="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+          </ScrollReveal>
+        )}
+
+        {/* Memory Anchor Card */}
+        {section.memoryAnchor && (
+          <ScrollReveal direction={isAlt ? "right" : "left"} delay={0.15}>
+            <MemoryAnchor anchor={section.memoryAnchor} color={colorTheme} />
+          </ScrollReveal>
+        )}
+
         {section.pullQuote && (
           <ScrollReveal direction={isAlt ? "right" : "left"} delay={0.2}>
             <div className="bg-primary-light dark:bg-primary-dark border-l-4 border-accent-orange shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.02)] p-6 rounded-r-2xl transform hover:-translate-y-1 transition-transform">

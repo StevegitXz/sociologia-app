@@ -3,10 +3,17 @@ import imgSociety from '../assets/illustrations/society.png';
 import imgAnthropology from '../assets/illustrations/anthropology.png';
 import imgCulture from '../assets/illustrations/culture.png';
 import imgStructure from '../assets/illustrations/structure.png';
+import imgPeixeAgua from '../assets/illustrations/peixe_agua.jpg';
+import imgTresCiencias from '../assets/illustrations/tres_ciencias.jpg';
+import imgRelativismo from '../assets/illustrations/relativismo.jpg';
+import imgDadiva from '../assets/illustrations/dadiva.jpg';
+import imgConflito from '../assets/illustrations/conflito.jpg';
+import imgFronteiras from '../assets/illustrations/fronteiras.jpg';
 
 export const chaptersData = {
   intro: {
     title: "Introdução: O olhar sociológico sobre o cotidiano",
+    colorTheme: "orange",
     illustration: imgSociety,
     illustrationAlt: "Ilustração abstrata de conexões sociais entre pessoas",
     sections: [
@@ -34,7 +41,14 @@ export const chaptersData = {
           { term: "sociedade capitalista", definition: "Organização social baseada na propriedade privada e em relações de consumo e produção voltadas ao lucro." }
         ],
         pullQuote: "Nada é simplesmente natural no mundo social, tudo é construído social e historicamente.",
-        extraNote: "A desnaturalização é um exercício contínuo que nos ajuda a romper com o conformismo diante de desigualdades naturalizadas."
+        extraNote: "A desnaturalização é um exercício contínuo que nos ajuda a romper com o conformismo diante de desigualdades naturalizadas.",
+        sectionIllustration: imgPeixeAgua,
+        memoryAnchor: {
+          icon: "eye",
+          title: "A Metáfora do Peixe na Água",
+          phrase: "A água é a última coisa que o peixe percebe. A desnaturalização nos tira da 'água' das certezas cotidianas.",
+          metaphor: "Assim como o peixe não nota a água até ser tirado dela, nós tomamos papéis sociais como 'naturais' até que o olhar sociológico nos mostre a construção histórica."
+        }
       },
       {
         id: "intro-3",
@@ -48,7 +62,14 @@ export const chaptersData = {
           { term: "colonialismo", definition: "Prática histórica de expansão territorial em que muitas das primeiras bases para estudos sociais foram delineadas." }
         ],
         pullQuote: "A Antropologia se dedica ao estudo da diferença, a Sociologia à estrutura da sociedade capitalista, e a Ciência Política às formas de poder.",
-        fact: { number: "3", label: "Ramos Principais", caption: "As Ciências Sociais dividem-se tradicionalmente em Antropologia, Sociologia e Ciência Política." }
+        fact: { number: "3", label: "Ramos Principais", caption: "As Ciências Sociais dividem-se tradicionalmente em Antropologia, Sociologia e Ciência Política." },
+        sectionIllustration: imgTresCiencias,
+        memoryAnchor: {
+          icon: "compass",
+          title: "O Trio da Lente Social",
+          phrase: "Antropologia foca na diferença; Sociologia foca na estrutura; Ciência Política foca no poder.",
+          metaphor: "São três lentes: a Antropologia dá zoom na cultura do outro, a Sociologia analisa o motor do trabalho e a Ciência Política mede quem dá a palavra final no jogo."
+        }
       },
       {
         id: "intro-4",
@@ -217,6 +238,7 @@ export const chaptersData = {
   },
   cap1: {
     title: "Capítulo 1: O pensamento antropológico",
+    colorTheme: "emerald",
     illustration: imgAnthropology,
     illustrationAlt: "Ilustração abstrata de pensamento antropológico com símbolos culturais",
     sections: [
@@ -231,7 +253,14 @@ export const chaptersData = {
         ],
         pullQuote: "O encontro entre culturas, ainda que marcado pela dominação, plantou a semente para a compreensão científica da diversidade humana.",
         extraNote: "Os primeiros relatos sobre povos nativos eram feitos por viajantes, missionários e administradores coloniais, frequentemente carregados de preconceitos morais e religiosos europeus.",
-        fact: { number: "XVI", label: "Século do Contato", caption: "O expansionismo colonial europeu no século XVI marcou o início de uma nova era global de encontros e dominações culturais." }
+        fact: { number: "XVI", label: "Século do Contato", caption: "O expansionismo colonial europeu no século XVI marcou o início de uma nova era global de encontros e dominações culturais." },
+        sectionIllustration: imgAnthropology,
+        memoryAnchor: {
+          icon: "compass",
+          title: "O Desafio da Alteridade",
+          phrase: "Antropologia nasce do impacto de encarar o 'outro' e perceber que a sua cultura não é o centro do universo.",
+          metaphor: "Estranhar o diferente é o primeiro passo para compreender que a humanidade tem infinitas formas de viver."
+        }
       },
       {
         id: "cap1-2",
@@ -244,7 +273,13 @@ export const chaptersData = {
         ],
         pullQuote: "A crença numa escala linear de evolução serviu de alicerce ideológico para justificar a exploração e o domínio de povos inteiros sob o disfarce do progresso.",
         extraNote: "Edward Tylor, um dos pioneiros, foi crucial ao definir cultura em 1871 como 'o todo complexo' que inclui conhecimento, arte, moral e costumes adquiridos pelo homem.",
-        fact: { number: "3", label: "Estágios Evolutivos", caption: "Morgan dividia a humanidade em três grandes fases: Selvageria, Barbárie e Civilização." }
+        fact: { number: "3", label: "Estágios Evolutivos", caption: "Morgan dividia a humanidade em três grandes fases: Selvageria, Barbárie e Civilização." },
+        memoryAnchor: {
+          icon: "shield",
+          title: "A Falsa Escada Linear",
+          phrase: "Não existem culturas 'superiores' ou 'primitivas', apenas caminhos históricos e respostas diferentes.",
+          metaphor: "O evolucionismo social mediu o mundo inteiro com a régua europeia. A antropologia moderna provou que essa régua era falsa."
+        }
       },
       {
         id: "cap1-3",
@@ -257,7 +292,13 @@ export const chaptersData = {
         ],
         pullQuote: "As práticas culturais que parecem irracionais de fora, revelam-se mecanismos complexos de sobrevivência e coesão quando vistas por dentro.",
         extraNote: "A publicação de 'Os Argonautas do Pacífico Ocidental' (1922) por Malinowski é considerada o marco fundador da etnografia e da antropologia social moderna.",
-        fact: { number: "1922", label: "Marco Etnográfico", caption: "Ano de publicação da obra que revolucionou o método de pesquisa com observação participante." }
+        fact: { number: "1922", label: "Marco Etnográfico", caption: "Ano de publicação da obra que revolucionou o método de pesquisa com observação participante." },
+        memoryAnchor: {
+          icon: "compass",
+          title: "O Diário de Campo de Malinowski",
+          phrase: "Para entender a cultura do outro, você precisa sair da varanda e viver a rotina dele.",
+          metaphor: "Ler sobre natação não ensina a nadar. A etnografia é pular na água do dia a dia do grupo estudado."
+        }
       },
       {
         id: "cap1-4",
@@ -270,7 +311,13 @@ export const chaptersData = {
         ],
         pullQuote: "O 'pensamento selvagem' não é irracional; ele é tão lógico e complexo quanto o pensamento científico moderno, operando apenas com outras categorias.",
         extraNote: "A obra 'O Pensamento Selvagem' (1962) desconstruiu a ideia de superioridade cognitiva ocidental, defendendo a unidade intelectual da humanidade.",
-        fact: { number: "100", label: "Centenário", caption: "Claude Lévi-Strauss viveu mais de um século, deixando um legado inestimável para a compreensão das estruturas do pensamento." }
+        fact: { number: "100", label: "Centenário", caption: "Claude Lévi-Strauss viveu mais de um século, deixando um legado inestimável para a compreensão das estruturas do pensamento." },
+        memoryAnchor: {
+          icon: "cpu",
+          title: "A Gramática da Mente Humana",
+          phrase: "Os mitos e rituais indígenas não são 'fantasia', mas arquitetura de lógica pura.",
+          metaphor: "Usamos regras gramaticais sem recitar o dicionário. Os mitos revelam o 'código-fonte' universal da mente."
+        }
       }
     ],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -371,6 +418,7 @@ export const chaptersData = {
   },
   cap2: {
     title: "Capítulo 2: O conceito de cultura",
+    colorTheme: "violet",
     illustration: imgCulture,
     illustrationAlt: "Ilustração abstrata de mosaico representando diversidade cultural",
     sections: [
@@ -385,7 +433,8 @@ export const chaptersData = {
         ],
         pullQuote: "Pensar em 'culturas' no plural — e rejeitar uma 'civilização' como régua universal — foi a revolução intelectual promovida por Franz Boas.",
         extraNote: "A oposição de Franz Boas às explicações biológicas para o comportamento humano foi central para derrubar teorias pseudocientíficas racistas no início do século XX.",
-        fact: { number: "∞", label: "Infinitas Culturas", caption: "Boas defendia que não existe um caminho único para o desenvolvimento humano, mas sim caminhos incontáveis." }
+        fact: { number: "∞", label: "Infinitas Culturas", caption: "Boas defendia que não existe um caminho único para o desenvolvimento humano, mas sim caminhos incontáveis." },
+        sectionIllustration: imgCulture
       },
       {
         id: "cap2-2",
@@ -398,7 +447,14 @@ export const chaptersData = {
         ],
         pullQuote: "O relativismo nos ensina a compreender antes de julgar, desafiando a tendência etnocêntrica de considerar a própria cultura como o único modelo aceitável.",
         extraNote: "O embate ético entre os defensores ferrenhos da tradição (relativistas radicais) e os ativistas globais (universalistas) é um dos tópicos mais quentes da antropologia jurídica contemporânea.",
-        fact: { number: "1948", label: "Declaração Universal", caption: "A DUDH gerou intensos debates na Associação Americana de Antropologia sobre como conciliar direitos universais e diversidade." }
+        fact: { number: "1948", label: "Declaração Universal", caption: "A DUDH gerou intensos debates na Associação Americana de Antropologia sobre como conciliar direitos universais e diversidade." },
+        sectionIllustration: imgRelativismo,
+        memoryAnchor: {
+          icon: "shield",
+          title: "O Relógio do Etnocentrismo",
+          phrase: "O etnocentrismo é usar um relógio que só marca a hora da sua cidade e achar que todas as outras cidades estão erradas.",
+          metaphor: "Compreender antes de julgar é a bússola do relativismo cultural para evitar preconceitos."
+        }
       },
       {
         id: "cap2-3",
@@ -411,7 +467,13 @@ export const chaptersData = {
         ],
         pullQuote: "Aquilo que consideramos ser instintivo ou natural no comportamento humano é, frequentemente, um padrão cultural profundamente enraizado em nós.",
         extraNote: "As descobertas de Margaret Mead nas décadas de 1920 e 1930 foram fundamentais para os movimentos feministas e libertários que surgiriam mais tarde no século XX.",
-        fact: { number: "1928", label: "Coming of Age in Samoa", caption: "Publicação do livro clássico de Mead, que revolucionou a percepção pública sobre juventude e cultura." }
+        fact: { number: "1928", label: "Coming of Age in Samoa", caption: "Publicação do livro clássico de Mead, que revolucionou a percepção pública sobre juventude e cultura." },
+        memoryAnchor: {
+          icon: "lightbulb",
+          title: "O Roteiro da Personalidade",
+          phrase: "O que a sociedade chama de 'natureza humana' é um script cultural internalizado.",
+          metaphor: "Margaret Mead provou em Samoa que as angústias da juventude não vêm da biologia, mas de como a cultura organiza a vida."
+        }
       },
       {
         id: "cap2-4",
@@ -424,7 +486,13 @@ export const chaptersData = {
         ],
         pullQuote: "As culturas não são relíquias congeladas no tempo, mas organismos vivos, dinâmicos e em constante reconstrução através do contato humano.",
         extraNote: "A visão moderna rejeita purismos. Hoje se entende que processos como a globalização não necessariamente destroem as culturas locais, mas as reconfiguram e as hibridizam.",
-        fact: { number: "100%", label: "Mudança", caption: "Nenhuma cultura hoje é exatamente igual ao que era há um século; a adaptação e o hibridismo são regras universais." }
+        fact: { number: "100%", label: "Mudança", caption: "Nenhuma cultura hoje é exatamente igual ao que era há um século; a adaptação e o hibridismo são regras universais." },
+        memoryAnchor: {
+          icon: "eye",
+          title: "Óculos Coloridos da Realidade",
+          phrase: "Nenhuma cultura é uma estátua de pedra estática; todas são rios em constante transformação.",
+          metaphor: "A cultura é o óculo colorido com o qual enxergamos a realidade. Não há olhar sem lente na experiência humana."
+        }
       }
     ],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -525,6 +593,7 @@ export const chaptersData = {
   },
   cap3: {
     title: "Capítulo 3: Da estrutura à identidade",
+    colorTheme: "cyan",
     illustration: imgStructure,
     illustrationAlt: "Ilustração abstrata de estrutura social com nós interconectados",
     sections: [
@@ -539,7 +608,14 @@ export const chaptersData = {
         ],
         pullQuote: "Assim como os órgãos mantêm um corpo vivo, as instituições mantêm a sociedade coesa e a salvo do caos e da desintegração.",
         extraNote: "Embora revolucionária para a época, a perspectiva britânica focada no equilíbrio logo seria criticada por estudiosos posteriores, por ignorar os conflitos sociais, as rebeliões e o papel histórico das mudanças nas estruturas de poder.",
-        fact: { number: "1940", label: "Estrutura Social", caption: "Data da publicação clássica 'Sistemas Políticos Africanos', marco dos estudos sobre governança nativa pela escola britânica." }
+        fact: { number: "1940", label: "Estrutura Social", caption: "Data da publicação clássica 'Sistemas Políticos Africanos', marco dos estudos sobre governança nativa pela escola britânica." },
+        sectionIllustration: imgStructure,
+        memoryAnchor: {
+          icon: "cpu",
+          title: "A Metáfora do Organismo Vivo",
+          phrase: "Cada instituição é um órgão mantendo o sistema vivo e coeso.",
+          metaphor: "A família, a escola e a justiça funcionam como o coração, os pulmões e os rins da sociedade para impedir o colapso."
+        }
       },
       {
         id: "cap3-2",
@@ -552,7 +628,14 @@ export const chaptersData = {
         ],
         pullQuote: "O dom — ou a troca e retribuição de presentes — não é mera economia, mas o próprio tecido mágico e político que mantém as sociedades alinhadas e unidas.",
         extraNote: "A lógica da dádiva ainda opera fortemente em nossas vidas. A obrigação social moderna de retribuir um jantar quando somos convidados para comer na casa de amigos é um eco direto da teoria de Mauss.",
-        fact: { number: "3", label: "Obrigações", caption: "Dar, receber e retribuir formam o círculo inquebrável da reciprocidade nas sociedades humanas." }
+        fact: { number: "3", label: "Obrigações", caption: "Dar, receber e retribuir formam o círculo inquebrável da reciprocidade nas sociedades humanas." },
+        sectionIllustration: imgDadiva,
+        memoryAnchor: {
+          icon: "bookmark",
+          title: "A Tríplice Aliança da Dádiva",
+          phrase: "Dar, receber e retribuir: um presente nunca é apenas um objeto, é uma aliança social.",
+          metaphor: "Ao aceitar um presente de aniversário, você aceita também uma aliança invisível de retribuição que renova a amizade."
+        }
       },
       {
         id: "cap3-3",
@@ -565,7 +648,14 @@ export const chaptersData = {
         ],
         pullQuote: "O conflito não é necessariamente a destruição da sociedade; muitas vezes, ele é o próprio motor da mudança e readaptação das estruturas de poder.",
         extraNote: "A Escola de Manchester foi crucial no desenvolvimento de novos métodos metodológicos, como a Análise Situacional e a atenção aos dramas sociais complexos na modernidade.",
-        fact: { number: "1950s", label: "Surgimento", caption: "A Escola de Manchester ganhou força no período pós-guerra, desafiando a estabilidade e o conservadorismo funcionalista clássico." }
+        fact: { number: "1950s", label: "Surgimento", caption: "A Escola de Manchester ganhou força no período pós-guerra, desafiando a estabilidade e o conservadorismo funcionalista clássico." },
+        sectionIllustration: imgConflito,
+        memoryAnchor: {
+          icon: "cpu",
+          title: "O Conflito como Motor Estrutural",
+          phrase: "O conflito não destrói a sociedade: ele renegocia as regras e renova o sistema.",
+          metaphor: "A válvula de escape de uma panela de pressão evita que ela exploda. O conflito social é a válvula de renovação do sistema."
+        }
       },
       {
         id: "cap3-4",
@@ -578,7 +668,14 @@ export const chaptersData = {
         ],
         pullQuote: "A identidade cultural e étnica não mora no isolamento. Ela se acende e é gerida na interação contrastante, na oposição fluida contra o 'outro'.",
         extraNote: "Essa teoria mostra como os grupos étnicos modernos conseguem preservar sua essência identitária mesmo quando suas práticas externas mudam devido à modernização, pois o mais vital é manter a linha simbólica de filiação frente a terceiros.",
-        fact: { number: "1969", label: "Obra Revolucionária", caption: "O lançamento do livro de Barth mudou definitivamente como as ciências compreendem os movimentos identitários globalmente." }
+        fact: { number: "1969", label: "Obra Revolucionária", caption: "O lançamento do livro de Barth mudou definitivamente como as ciências compreendem os movimentos identitários globalmente." },
+        sectionIllustration: imgFronteiras,
+        memoryAnchor: {
+          icon: "compass",
+          title: "A Fronteira Viva de Fredrik Barth",
+          phrase: "Identidade não é o conteúdo da mala cultural, é a linha desenhada no contato com o vizinho.",
+          metaphor: "Uma ilha só se percebe como ilha porque há o mar ao redor. A identidade étnica nasce no contraste com o outro."
+        }
       }
     ],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",

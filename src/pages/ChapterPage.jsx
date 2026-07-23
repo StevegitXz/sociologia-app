@@ -171,6 +171,7 @@ export default function ChapterPage({ chapterId: defaultId }) {
             section={sec} 
             index={i} 
             onDiscoverTerm={discoverTerm}
+            colorTheme={data.colorTheme || 'orange'}
           />
         ))}
       </div>

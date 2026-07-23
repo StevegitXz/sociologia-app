@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const STORAGE_KEY = 'sociologia_app_progress_v1';
 
@@ -26,9 +26,12 @@ export function useProgress() {
     }
   }, [progress]);
 
-  const markSectionCompleted = (sectionId, chapterId, totalSectionsInChapter) => {
+  const markSectionCompleted = useCallback((sectionId, chapterId, totalSectionsInChapter) => {
     setProgress((prev) => {
-      const nextSections = prev.completedSections.includes(sectionId)
+      const alreadyCompleted = prev.completedSections.includes(sectionId);
+      
+      // Calculate next sections
+      const nextSections = alreadyCompleted
         ? prev.completedSections
         : [...prev.completedSections, sectionId];
 
@@ -41,15 +44,20 @@ export function useProgress() {
         }
       }
 
+      // If nothing changed, return prev unchanged to prevent re-render loop
+      if (alreadyCompleted && nextChapters === prev.completedChapters) {
+        return prev;
+      }
+
       return {
         ...prev,
         completedSections: nextSections,
         completedChapters: nextChapters
       };
     });
-  };
+  }, []);
 
-  const saveQuizScore = (chapterId, score, total) => {
+  const saveQuizScore = useCallback((chapterId, score, total) => {
     setProgress((prev) => ({
       ...prev,
       quizScores: {
@@ -57,9 +65,9 @@ export function useProgress() {
         [chapterId]: { score, total, timestamp: Date.now() }
       }
     }));
-  };
+  }, []);
 
-  const discoverTerm = (termObj) => {
+  const discoverTerm = useCallback((termObj) => {
     if (!termObj || !termObj.term) return;
     setProgress((prev) => {
       const exists = prev.discoveredTerms.some(
@@ -71,7 +79,7 @@ export function useProgress() {
         discoveredTerms: [...prev.discoveredTerms, termObj]
       };
     });
-  };
+  }, []);
 
   return {
     progress,
